@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + TS</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <canvas id="bg"></canvas>
+  <main>
+
+    <header>
+      <h1>Google Summer of Code</h1>
+    </header>
+
+    <blockquote>
+      <p>Patricija Cerkaite</p>
+    </blockquote>
+
+    <section class="About Me" id="AboutMe">
+      <h2>📜 About Me</h2>
+      <p>
+        I am a Computer Science graduate at the Eindhoven University of Technology, founder and mentor of the Google
+        Developer Student Club at TU/e, spent my Summer
+        working in the Microsoft Data Centers and analysing Chromium’s Web performance.
+        Above all, I am a Web performance and tracing enthusiast.
+      </p>
+
+    </section>
+
+    <blockquote>
+      <p>Chromium | 2023</p>
+    </blockquote>
+
+    <section class="light">
+      <h2>Improving INP Metric by Exposing InteractionId to a Wider Range of Events</h2>
+      <p>
+        The Interaction to Next Paint (INP) is a performance metric that assesses responsiveness. It reflects how fast a
+        webpage responds to user inputs. For example, when a user types a word in the textbox the INP metric measures
+        speed of a response. In this case, it shows how long it took for a user to see the typed word on the screen in
+        the text box.
+      </p>
+      <p>
+        To obtain this metric we need to measure multiple components such as click or keyboard events. Although there
+        might be quite a few improvements on click or continuous events in the future steps of the project this project
+        mainly reflects the keyboard and composition events. The project focuses on how exposing Interaction id to
+        certain
+        keyboard and composition events can improve accuracy of the INP metric.
+
+      </p>
+      <p>
+        <img src="Interaction ID (1).png" alt="Design Idea" class="image" style="width:100%">
+      </p>
+      <p>
+        As stated above, the definition of the INP metric relies on measuring interactions. Measuring the timing of the
+        interaction is achieved through the utilization of the Event Timing API. The API groups meaningful key, click
+        events to compute one consistent keyboard interaction. Based on the computation it is possible to obtain several
+        interaction features such as: InteractionId, processing duration and the entry type that triggered the
+        interaction.
+      </p>
+      <p>
+        The Event Timing API enables analysis of pressing a key on a keyboard. This process entails several keyboard
+        events: keydown, keypress, beforeinput, input and keyup that are fired in this specific sequence. Up until this
+        point, the API exposes the interactionId feature only of the key up and key down events.
+        However, measuring only keyup and keydown events might not reflect the full user experience. Keypress events can
+        have the longest duration from all the events resulting in compromised accuracy of the INP metric. Hence, adding
+        the interactionId to the keypress event might improve precision of the INP metric. Moreover, measuring keypress
+        could possibly solve the confusion when the InteractionId is set to 0.
+      </p>
+      <p>
+        Another type of interaction that can be measured with the Event Timing API is based on the composition events.
+        In contrast to the keyboard interaction, the composition events are formed by inputting text in a supplementary
+        or alternate manner than by Keyboard Events. However, up until now the Event Timing API exposes only the input
+        event’s InteractionId during the composition. Second goal of the project is to reveal InteractionIds for
+        different types of composed events such as compositionstart or compositionend.
+      </p>
+
+      <br>
+      <div style="display: flex;">
+        <div style="flex: 1;">
+          <h2>🏆 Accomplishments</h2>
+          <ul>
+            <li>Fixed a major bug within the innitial composition events logic.</li>
+            <li>Redifined computation of intreactionId for keybopard events.</li>
+            <li>Exposed interactionId to keypress and composition events.</li>
+            <!-- add more list items as needed -->
+          </ul>
+        </div>
+        <div style="flex: 1;">
+          <a href="https://chromium-review.googlesource.com/c/chromium/src/+/4632521">
+            <img src="Screenshot 2023-09-04 192853.png" alt="Design Idea" style="width:150%;">
+          </a>
+        </div>
+      </div>
+      
+      <h2  style="animation: bounce 2s infinite;">✨ Try Yourself!</h2>
+      <input type="text" id="interaction" name="input"><br>
+      <a id='result'> Type Anything in the text Box ⬆️</a>
+
+    </section>
+
+    <blockquote>
+      <p>Chromium | 2022</p>
+    </blockquote>
+
+    <section class="left">
+      <h2>Make Perfetto Perfect: INP Metric</h2>
+
+      <p>
+        On Perfetto, users can get brilliant insights into the performance of applications through trace visualizations
+        and metrics. Recently, core web vitals shaped a different view of a smooth website by bringing the Interaction
+        to Next Paint metric to the light. Therefore, there is a need to update the Perfetto with the latest
+        revolutionary metrics to provide better and faster insights to the developers of their web applications. The
+        goal of this project is to improve the Perfetto tracing tool and visualize the core web vital metrics and INP in
+        a consistent manner. Make Perfetto Perfect!
+      </p>
+
+      <p>
+        <iframe width="560" height="315" class=" image"
+          src="https://www.youtube.com/embed/R0lhBR4Zfqg?si=c9w4DtzVe2C24gwx&amp;start=2144"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </p>
+
+    </section>
+
+    <blockquote>
+      <p>Thanks for reading!</p>
+    </blockquote>
+
+
+  </main>
+  <script type="importmap">
+      {
+          "imports": {
+              "three": "https://threejsfundamentals.org/threejs/resources/threejs/r132/build/three.module.js"
+          }
+      }
+  </script>
+  <script type="module" src="/src/main.ts"></script>
+
+  <script>
+    let result = document.getElementById('result');
+    const events = ['keydown', 'keypress', 'keyup'];
+    let totalEvents = 0;
+    let keypressEvents = 0;
+    let eventListElement = document.createElement('div');
+    eventListElement.className = 'event-list';
+    result.appendChild(eventListElement);
+
+    function updateResult() {
+      result.innerHTML = `As you typed, the browser handled a total of ${totalEvents} events. This included ${keypressEvents} keypress events. These statistics have been enhanced in this project to allow developers and browser specialists to track interactions more precisely.<br/>`;
+
+      result.appendChild(eventListElement);
+    }
+
+    events.forEach(event => {
+      document.getElementById('interaction').addEventListener(event, (e) => {
+        totalEvents++;
+        const eventItem = document.createElement('div');
+        eventItem.className = 'event-item';
+        eventItem.innerText = event;
+        eventListElement.appendChild(eventItem);
+
+        if (event === 'keypress') {
+          keypressEvents++;
+          eventItem.classList.add('keypress');
+        }
+        updateResult();
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>
