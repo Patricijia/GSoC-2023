@@ -16,6 +16,11 @@ body {
   font-weight: var(--main-font-weight);
   font-style: var(--main-font-style);
   margin: 0;
+  background-image: url('image.jpg');
+  background-size: cover; /* This will cover the entire viewport */
+  background-repeat: no-repeat; /* This will prevent the image from repeating */
+  background-position: center; /* This will center the image */
+  background-attachment: fixed; /* This will fix the position of background */
 }
 
 canvas {
@@ -78,6 +83,10 @@ blockquote p {
 
 .left {
   grid-column: 6 / 12;
+}
+
+.right {
+  grid-column: 2 / 8;
 }
 
 .image {
@@ -153,14 +162,39 @@ blockquote p {
   height: auto;
 }
 
-@media (max-width: 768px) {
-  .container .text-section, .container .image-section {
-    flex: 100%;
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 20px; 
+  }
+
+  .left, .right {
+    grid-column: 1 / -1; 
+    text-align: center; 
   }
 
   .responsive-container {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center; 
+  }
+
+  .responsive-text {
+    text-align: center; 
+  }
+}
+
+@media (max-width: 768px) {
+  .container .text-section, .container .image-section {
+    flex: 1 0 100%; 
+    margin-bottom: 20px; 
+  }
+
+  .left, .right {
+    grid-column: 1 / -1; 
+    text-align: center; 
+  }
+
+  .responsive-container {
+    align-items: center; 
   }
 
   .responsive-image {
@@ -170,7 +204,44 @@ blockquote p {
   }
 
   .responsive-text {
-    text-align: left;
+    text-align: center; 
+  }
+}
+
+@media (max-width: 600px) {
+  body, header, section, blockquote, .text-section ul li {
+    text-align: center;
+  }
+
+  .left, .right {
+    grid-column: 1 / -1; 
+    text-align: center; 
+  }
+
+  header, section, .text-section {
+    grid-column: 1 / -1; 
+  }
+
+  .text-section ul li {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  blockquote p {
+    display: block;
+  }
+
+  .responsive-text {
+    text-align: center;
+  }
+
+  .image {
+    width: 100%; 
+    margin: 0 auto; 
+  }
+
+  main {
+    padding: 20px; 
   }
 }
 
@@ -188,41 +259,6 @@ blockquote p {
   }
 }
 
-@media (max-width: 600px) {
-  header {
-    font-size: 1.5rem;
-  }
-
-  section {
-    font-size: 1rem;
-  }
-
-  .text-section ul li {
-    font-size: 1rem;
-  }
-
-  blockquote p {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 400px) {
-  header {
-    font-size: 1.2rem;
-  }
-
-  section {
-    font-size: 0.875rem;
-  }
-
-  .text-section ul li {
-    font-size: 0.875rem;
-  }
-
-  blockquote p {
-    font-size: 1.5rem;
-  }
-}
 
 .text-section ul {
   list-style-type: none;
