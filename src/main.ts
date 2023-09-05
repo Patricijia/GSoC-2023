@@ -24,10 +24,13 @@ renderer.render(scene, camera);
 // Torus
 
 const texture = new THREE.TextureLoader().load('gsoc2-1.webp');
+
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
 const material = new THREE.MeshStandardMaterial({
-    map: texture
+  map: texture,
+  color: 0xffd9b3,  // Adding a bit more of an orange tint
 });
+
 const torus = new THREE.Mesh(geometry, material);
 
 scene.add(torus);
@@ -37,11 +40,14 @@ scene.add(torus);
 let pointLight = new THREE.SpotLight(0xffffff, 1000);
 pointLight.position.set(-10, -20, 10);
 
+let additionalLight = new THREE.SpotLight(0xffffff, 1000);
+additionalLight.position.set(10, 20, 10);
+
 const ambientLight = new THREE.AmbientLight(0xffffff, 2);
 
 
 scene.add(camera);
-scene.add(pointLight, ambientLight,);
+scene.add(pointLight, ambientLight,additionalLight);
 
 
 // Helpers
@@ -99,7 +105,7 @@ loader.load(
         // Here you can set the position, rotation, and scale
         gltf.scene.position.z = 35; // example position
         gltf.scene.position.x = -30;// example position
-        gltf.scene.scale.set(2.5 * window.innerWidth / window.innerHeight, 2.5 * window.innerWidth / window.innerHeight, 2.5 * window.innerWidth / window.innerHeight); // example scale
+        gltf.scene.scale.set(4 * window.innerWidth / window.innerHeight, 4 * window.innerWidth / window.innerHeight, 4 * window.innerWidth / window.innerHeight); // example scale
         scene.add(gltf.scene)
         google_logo = gltf.scene
     },
