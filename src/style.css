@@ -234,7 +234,12 @@ blockquote p {
 }
 
 @media (max-width: 600px) {
-  body, header, section, blockquote, .text-section ul li {
+  body,  section, blockquote, .text-section ul li {
+    text-align: center;
+    font-size: 0.75rem; /* Reduced text size */
+  }
+  header {
+    margin-top: 10%;
     text-align: center;
     font-size: 0.75rem; /* Reduced text size */
   }
