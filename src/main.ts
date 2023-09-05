@@ -82,7 +82,8 @@ const jeffTexture = new THREE.TextureLoader().load('Chromium_Logo.svg.png');
 
 const jeff = new THREE.Mesh(new THREE.CircleGeometry(2, 32), new THREE.MeshStandardMaterial({
     map: jeffTexture, metalness: 0.4,
-    roughness: 0.8
+    roughness: 0.8,
+    side: THREE.DoubleSide
 }));
 
 scene.add(jeff);
