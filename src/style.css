@@ -1,71 +1,72 @@
+:root {
+  --dark-bg: #359ff5f2;
+  --spacing: 350px;
+  --main-font: brandon-grotesque, sans-serif;
+  --heading-font: elevon, sans-serif;
+  --heading-weight: 700;
+  --main-font-weight: 400;
+  --main-font-style: normal;
+  --large-font-size: 2.5rem;
+  --medium-font-size: 1.25rem;
+  --small-font-size: 1rem;
+}
+
+body {
+  font-family: var(--main-font);
+  font-weight: var(--main-font-weight);
+  font-style: var(--main-font-style);
+  margin: 0;
+}
+
 canvas {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: -1;
 }
-
-
-:root {
-  --dark-bg: #359ff5f2;
-  --spacing: 350px;
-
-  font-family: brandon-grotesque, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 
 main {
-  width: 100vw;
+  width: 100%;
   color: white;
   z-index: 99;
   position: absolute;
-  width: 100%;
-  margin: 0px auto;
-  padding: 120px 0px;
-
+  margin: 0;
+  padding: 120px 0;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+}
+
+header,
+section {
+  background: var(--dark-bg);
+  padding: 2rem;
+  margin-bottom: var(--spacing);
+}
+
+header {
+  grid-column: 2 / span 5;
+  font-size: 2.5rem;
+}
+
+section {
+  grid-column: 2 / 8;
+  font-size: 1.25rem;
+  line-height: 1.5;
 }
 
 h1,
 h2,
 h3,
 blockquote {
-  font-family: elevon, sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
-
-
-header {
-  background: var(--dark-bg);
-  grid-column: 2 / span 5;
-  font-size: 2.5rem;
-  padding: 2rem;
-  margin-bottom: var(--spacing);
-}
-
-section {
-  grid-column: 2 / 8;
-  padding: 1rem;
-  background: var(--dark-bg);
-  font-size: 1.25rem;
-  line-height: 1.5;
-  margin-bottom: var(--spacing);
+  font-family: var(--heading-font);
+  font-weight: var(--heading-weight);
+  font-style: var(--main-font-style);
 }
 
 blockquote {
+  grid-column: 2 / span 9;
   margin: 0;
   padding: 0;
-  grid-column: 2 / span 9;
   margin-bottom: var(--spacing);
 }
 
@@ -83,12 +84,11 @@ blockquote p {
 
 .image {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   width: 50%;
 }
 
-#interaction{
+#interaction {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -100,7 +100,7 @@ blockquote p {
 }
 
 #result {
-  font-family: 'Arial, sans-serif';
+  font-family: Arial, sans-serif;
 }
 
 .event-list {
@@ -120,14 +120,155 @@ blockquote p {
   background-color: #FFA500;
 }
 
+.iframe-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+  /* 16:9 Aspect Ratio */
+  height: 0;
+  /* Collapse container vertically */
+}
+
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+css Copy code .container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container .text-section,
+.image-section img {
+  width: 100%;
+  height: auto;
+  min-width: 100px;
+  min-height: 100px;
+  object-fit: cover;
+}
+
+.container .image-section img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+
+  .container .text-section,
+  .container .image-section {
+    flex: 100%;
+  }
+}
+
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0);
   }
+
   40% {
     transform: translateY(-30px);
   }
+
   60% {
     transform: translateY(-15px);
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    font-size: 1.5rem;
+  }
+
+  section {
+    font-size: 1rem;
+  }
+
+  blockquote p {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  header {
+    font-size: 1.2rem;
+  }
+
+  section {
+    font-size: 0.875rem;
+  }
+
+  blockquote p {
+    font-size: 1.5rem;
+  }
+}
+
+.text-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.text-section ul li {
+  background: var(--dark-bg);
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  font-size: var(--medium-font-size);
+  color: white;
+}
+
+.text-section ul li:before {
+  content: '✔';
+  margin-right: 10px;
+  color: #00c767;
+  font-size: 1.2em;
+}
+
+
+@media (max-width: 600px) {
+  header {
+    font-size: 1.5rem;
+  }
+
+  section {
+    font-size: 1rem;
+  }
+
+  .text-section ul li {
+    font-size: 1rem;
+  }
+
+  blockquote p {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  header {
+    font-size: 1.2rem;
+  }
+
+  section {
+    font-size: 0.875rem;
+  }
+
+  .text-section ul li {
+    font-size: 0.875rem;
+  }
+
+  blockquote p {
+    font-size: 1.5rem;
   }
 }
