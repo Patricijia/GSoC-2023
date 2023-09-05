@@ -74,11 +74,13 @@ blockquote {
 }
 
 blockquote p {
-  color: black;
-  background-color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  background-color: #40444783;
   font-size: 4rem;
   display: inline;
   line-height: 1;
+  border-radius: 10px;
+  padding: 5%;
 }
 
 .left {
@@ -168,7 +170,7 @@ blockquote p {
   }
 
   .left, .right {
-    grid-column: 1 / -1; 
+
     text-align: center; 
   }
 
@@ -179,6 +181,7 @@ blockquote p {
 
   .responsive-text {
     text-align: center; 
+    font-size: 0.875rem; /* Reduced text size */
   }
 }
 
@@ -205,12 +208,14 @@ blockquote p {
 
   .responsive-text {
     text-align: center; 
+    font-size: 0.875rem; /* Reduced text size */
   }
 }
 
 @media (max-width: 600px) {
   body, header, section, blockquote, .text-section ul li {
     text-align: center;
+    font-size: 0.75rem; /* Reduced text size */
   }
 
   .left, .right {
@@ -227,12 +232,19 @@ blockquote p {
     align-items: center;
   }
 
+  blockquote {
+    margin: 20px; 
+    padding: 20px;
+  }
+
   blockquote p {
     display: block;
+    font-size: 1rem; /* Reduced text size */
   }
 
   .responsive-text {
     text-align: center;
+    font-size: 0.75rem; /* Reduced text size */
   }
 
   .image {
@@ -241,7 +253,7 @@ blockquote p {
   }
 
   main {
-    padding: 20px; 
+    padding: 0px; 
   }
 }
 
