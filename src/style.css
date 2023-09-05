@@ -224,7 +224,7 @@ blockquote p {
 
   
   blockquote {
-    margin: 50px; 
+    margin: 20px; 
     padding: 20px;
   }
 
@@ -253,9 +253,13 @@ blockquote p {
     align-items: center;
   }
 
+  blockquote {
+    margin: 2px; 
+    bottom: 3px;
+  }
 
   blockquote p {
-    font-size: 1rem; /* Reduced text size */
+    font-size: 0.7rem; 
   }
 
   .responsive-text {
