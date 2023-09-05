@@ -20,7 +20,7 @@ body {
   background-size: cover; /* This will cover the entire viewport */
   background-repeat: no-repeat; /* This will prevent the image from repeating */
   background-position: center; /* This will center the image */
-  background-attachment: fixed; /* This will fix the position of background */
+  border-radius: 10px;
 }
 
 canvas {
@@ -52,12 +52,14 @@ header, section {
 header {
   grid-column: 2 / span 5;
   font-size: var(--large-font-size);
+  border-radius: 10px;
 }
 
 section {
   grid-column: 2 / 8;
   font-size: var(--medium-font-size);
   line-height: 1.5;
+  border-radius: 10px;
 }
 
 h1, h2, h3, blockquote {
@@ -76,7 +78,7 @@ blockquote {
 blockquote p {
   color: rgb(255, 255, 255);
   background-color: #40444783;
-  font-size: 4rem;
+  font-size: 3rem;
   display: inline;
   line-height: 1;
   border-radius: 10px;
@@ -181,7 +183,16 @@ blockquote p {
 
   .responsive-text {
     text-align: center; 
-    font-size: 0.875rem; /* Reduced text size */
+    font-size: 0.7rem; /* Reduced text size */
+  }
+
+  blockquote {
+    margin: 50px; 
+    padding: 20px;
+  }
+
+  blockquote p {
+    font-size: 2rem; /* Reduced text size */
   }
 }
 
@@ -208,7 +219,17 @@ blockquote p {
 
   .responsive-text {
     text-align: center; 
-    font-size: 0.875rem; /* Reduced text size */
+    font-size: 0.7rem; /* Reduced text size */
+  }
+
+  
+  blockquote {
+    margin: 50px; 
+    padding: 20px;
+  }
+
+  blockquote p {
+    font-size: 1rem; /* Reduced text size */
   }
 }
 
@@ -232,13 +253,8 @@ blockquote p {
     align-items: center;
   }
 
-  blockquote {
-    margin: 20px; 
-    padding: 20px;
-  }
 
   blockquote p {
-    display: block;
     font-size: 1rem; /* Reduced text size */
   }
 
